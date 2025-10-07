@@ -1,0 +1,15 @@
+[
+  {
+    "label": "Build & Debug native binary",
+    "adapter": "CodeLLDB",
+    "request": "launch",
+    "program": "${workspaceFolder}/target/debug/cr8s",
+    "pid": "cargo",
+    "build": {
+      "command": "cargo",
+      "args": ["build"]
+    },
+    // sourceLanguages is required for CodeLLDB (not GDB) when using Rust
+    "sourceLanguages": ["rust"]
+  }
+]
