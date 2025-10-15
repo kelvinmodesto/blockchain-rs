@@ -7,7 +7,7 @@ edition = "2024"
 [dependencies]
 bincode = "2.0.1"
 bitcoincash-addr = "0.5.2"
-clap = "4.5.48"
+clap = "4.5.49"
 env_logger = "0.11.8"
 failure = "0.1.8"
 log = "0.4.28"
@@ -17,5 +17,8 @@ rust-crypto = "0.2.36"
 serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 sha2 = "0.10.9"
-simple_logger = "5.0.0"
+simple_logger = "5.1.0"
 sled = "0.34.7"
+
+[lib]
+path = "src/block.rs"
