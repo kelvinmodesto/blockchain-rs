@@ -2,16 +2,15 @@ pub mod block {
 
     use std::time::SystemTime;
 
-    use bincode::config::legacy;
-    use bincode::encode_to_vec;
     use crypto::digest::Digest;
     use crypto::sha2::Sha256;
     use log::info;
+    use serde::Serialize;
 
     const TARGET_HEXS: usize = 4;
     pub type Result<T> = std::result::Result<T, failure::Error>;
 
-    #[derive(Debug, Clone)]
+    #[derive(Serialize, Debug, Clone)]
     pub struct Block {
         timestamp: u128,
         transactions: String,
@@ -57,7 +56,7 @@ pub mod block {
                 self.nonce,
             );
 
-            let bytes = encode_to_vec(&content, legacy())?;
+            let bytes = bincode::serialize(&content)?;
             Ok(bytes)
         }
 
