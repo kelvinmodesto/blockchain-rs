@@ -1,10 +1,13 @@
 mod blockchain;
+mod cli;
 use blockchain::blockchain::Blockchain;
+use cli::Cli;
 
-fn main() {
-    let mut b: Blockchain = Blockchain::new();
-    let _ = b.add_block("data1".to_string());
-    let _ = b.add_block("data2".to_string());
-    let _ = b.add_block("data3".to_string());
-    dbg!(&b);
+pub type Result<T> = std::result::Result<T, failure::Error>;
+
+fn main() -> Result<()> {
+    let cli = Cli::new();
+    let _ = cli?.run();
+
+    Ok(())
 }

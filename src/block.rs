@@ -5,12 +5,12 @@ pub mod block {
     use crypto::digest::Digest;
     use crypto::sha2::Sha256;
     use log::info;
-    use serde::Serialize;
+    use serde::{Deserialize, Serialize};
 
     const TARGET_HEXS: usize = 4;
     pub type Result<T> = std::result::Result<T, failure::Error>;
 
-    #[derive(Serialize, Debug, Clone)]
+    #[derive(Serialize, Deserialize, Debug, Clone)]
     pub struct Block {
         timestamp: u128,
         transactions: String,
@@ -27,6 +27,10 @@ pub mod block {
 
         pub fn get_hash(&self) -> String {
             self.hash.clone()
+        }
+
+        pub fn get_prev_hash(&self) -> String {
+            self.prev_block_hash.clone()
         }
 
         pub fn new_block(data: String, prev_block_hash: String, height: i32) -> Result<Block> {
